@@ -8,7 +8,6 @@ import com.meet5.userservice.dto.UserResponse;
 import com.meet5.userservice.exception.DuplicateUsernameException;
 import com.meet5.userservice.exception.UserNotFoundException;
 import com.meet5.userservice.repository.UserRepository;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -63,7 +63,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<APIError> handleMissingBodyException(HttpMessageNotReadableException ex, HttpServletRequest request) {
+    public ResponseEntity<APIError> handleMissingBodyException(HttpMessageNotReadableException e, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 new APIError(
                         HttpStatus.BAD_REQUEST.value(),

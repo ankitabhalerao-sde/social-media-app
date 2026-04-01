@@ -1,14 +1,9 @@
 package com.meet5.userservice.repository;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meet5.userservice.domain.User;
 import com.meet5.userservice.domain.UserStatus;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
@@ -32,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import(UserRepository.class)
 public class UserRepositoryTest {
-    private final Logger log = LoggerFactory.getLogger(UserRepositoryTest.class);
+
     @Container
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16")
             .withDatabaseName("user_test")
@@ -161,7 +156,7 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("should handle batch according to cop threshold")
-    void shouldHandleLargeBatchUsingCopy() throws JsonProcessingException {
+    void shouldHandleLargeBatchUsingCopy() {
         List<User> users = new java.util.ArrayList<>();
         for (int i = 0; i < 505; i++) {
             users.add(buildProfile("load_test_user_" + i));
@@ -169,5 +164,17 @@ public class UserRepositoryTest {
 
         int inserted = userRepository.bulkInsert(users);
         assertThat(inserted).isEqualTo(users.size());
+    }
+
+    @Test
+    @DisplayName("should handle batch according to copy threshold")
+    void shouldInsertBatchAndSkipDuplicateUsingCopy() {
+        List<User> users = new java.util.ArrayList<>();
+        for (int i = 0; i < 505; i++) {
+            users.add(buildProfile("load_test_user_" + i));
+        }
+        users.add(buildProfile("load_test_user_" + 300));
+        int inserted = userRepository.bulkInsert(users);
+        assertThat(inserted).isEqualTo(users.size() - 1);
     }
 }

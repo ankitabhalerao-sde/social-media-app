@@ -5,7 +5,6 @@ import com.meet5.fraudservice.domain.FraudStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -40,9 +39,6 @@ public class FraudRepositoryTest {
         registry.add("spring.datasource.username", postgres::getUsername);
         registry.add("spring.datasource.password", postgres::getPassword);
     }
-
-//    @ServiceConnection
-//    static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:16");
 
     @Autowired
     FraudRepository fraudRepository;

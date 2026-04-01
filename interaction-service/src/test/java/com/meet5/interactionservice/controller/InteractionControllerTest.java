@@ -9,7 +9,6 @@ import com.meet5.interactionservice.dto.VisitorSummary;
 import com.meet5.interactionservice.exception.UserBlockedException;
 import com.meet5.interactionservice.service.InteractionService;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

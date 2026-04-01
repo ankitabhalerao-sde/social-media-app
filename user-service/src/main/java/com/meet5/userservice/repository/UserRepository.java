@@ -4,7 +4,6 @@ import org.postgresql.PGConnection;
 import com.meet5.userservice.domain.User;
 import com.meet5.userservice.domain.UserStatus;
 import org.postgresql.copy.CopyManager;
-import org.postgresql.core.BaseConnection;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -15,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.io.StringReader;
 import java.sql.*;
 import java.time.Instant;
@@ -45,10 +43,10 @@ public class UserRepository {
 
         String sql = """
                 INSERT INTO users
-                (id, name, username, age, status, extra_fields, created_at, updated_at) 
-                VALUES 
-                (:id, :name, :username, :age, :status, CAST(:extraFields AS jsonb), :createdAt, :updatedAt) 
-                ON CONFLICT (username) DO NOTHING 
+                (id, name, username, age, status, extra_fields, created_at, updated_at)
+                VALUES
+                (:id, :name, :username, :age, :status, CAST(:extraFields AS jsonb), :createdAt, :updatedAt)
+                ON CONFLICT (username) DO NOTHING
                 """;
         namedJdbc.update(sql, buildParams(userId, user, now));
 
@@ -64,30 +62,30 @@ public class UserRepository {
 
     public Optional<User> findById(UUID id) {
         String sql = """
-                SELECT id, name, username, age, extra_fields, status, created_at, updated_at 
-                FROM users 
+                SELECT id, name, username, age, extra_fields, status, created_at, updated_at
+                FROM users
                 WHERE id = :id
                 """;
                 List<User> results = namedJdbc.query(sql, Map.of("id", id), mapToUser());
-                return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+                return results.isEmpty() ? Optional.empty() : Optional.of(results.getFirst());
     }
 
     public Optional<User> findByUsername(String username) {
         String sql = """
-                SELECT id, name, username, age, extra_fields, status, created_at, updated_at 
-                FROM users 
+                SELECT id, name, username, age, extra_fields, status, created_at, updated_at
+                FROM users
                 WHERE username = :username
                 """;
 
         List<User> results = namedJdbc.query(sql, Map.of("username", username), mapToUser());
-        return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+        return results.isEmpty() ? Optional.empty() : Optional.of(results.getFirst());
     }
 
     @Transactional
     public void updateStatus(UUID userId, UserStatus status) {
         String sql = """
                 UPDATE users SET status = :status,
-                updated_at = :now 
+                updated_at = :now
                 where id = :id
                 """;
         namedJdbc.update(sql, Map.of("status", status.toString(),
@@ -111,10 +109,10 @@ public class UserRepository {
 
         String sql = """
                 INSERT INTO users
-                (id, name, username, age, status, extra_fields, created_at, updated_at) 
-                VALUES 
+                (id, name, username, age, status, extra_fields, created_at, updated_at)
+                VALUES
                 (:id, :name, :username, :age, :status, CAST(:extraFields AS jsonb), :createdAt, :updatedAt)
-                ON CONFLICT (username) DO NOTHING 
+                ON CONFLICT (username) DO NOTHING
                 """;
         Instant now = Instant.now();
 

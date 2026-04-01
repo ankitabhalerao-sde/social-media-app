@@ -1,7 +1,6 @@
 package com.meet5.userservice.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meet5.userservice.domain.UserStatus;
-//import com.meet5.userservice.dto.BulkInsertResponse;
 import com.meet5.userservice.dto.BulkInsertResponse;
 import com.meet5.userservice.dto.UserRequest;
 import com.meet5.userservice.dto.UserResponse;
@@ -9,7 +8,6 @@ import com.meet5.userservice.exception.DuplicateUsernameException;
 import com.meet5.userservice.exception.UserNotFoundException;
 import com.meet5.userservice.service.UserService;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
