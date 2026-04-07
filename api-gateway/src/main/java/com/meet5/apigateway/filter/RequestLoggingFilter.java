@@ -1,4 +1,4 @@
-package com.meet5.api_gateway.filter;
+package com.meet5.apigateway.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

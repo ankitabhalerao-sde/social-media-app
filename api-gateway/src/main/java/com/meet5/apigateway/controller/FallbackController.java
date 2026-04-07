@@ -1,4 +1,4 @@
-package com.meet5.api_gateway.controller;
+package com.meet5.apigateway.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

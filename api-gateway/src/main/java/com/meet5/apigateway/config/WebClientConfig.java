@@ -1,4 +1,4 @@
-package com.meet5.api_gateway.config;
+package com.meet5.apigateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
