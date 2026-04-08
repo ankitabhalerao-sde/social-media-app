@@ -1,6 +1,5 @@
 package com.meet5.interactionservice.repository;
 
-import com.meet5.interactionservice.dto.LikeRequest;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +22,7 @@ public class LikeRepository {
         int row = jdbcClient.sql("""
                 INSERT INTO profile_likes(id, liker_id, liked_id, liked_at) VALUES
                 (:id, :likerId, :likedId, :likedAt)
+                ON CONFLICT (liker_id, liked_id) DO NOTHING
                 """)
                 .param("id", UUID.randomUUID())
                 .param("likerId", likerId)
