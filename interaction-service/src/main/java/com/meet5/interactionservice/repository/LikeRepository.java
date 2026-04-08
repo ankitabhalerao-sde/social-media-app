@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -26,7 +27,7 @@ public class LikeRepository {
                 .param("id", UUID.randomUUID())
                 .param("likerId", likerId)
                 .param("likedId", likedId)
-                .param("likedAt", Instant.now())
+                .param("likedAt", Timestamp.from(Instant.now()))
                 .update();
         return row > 0;
     }

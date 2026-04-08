@@ -28,7 +28,7 @@ The system is built as a set of independently deployable microservices, each own
 | Redis                | 7.2     | In-memory action counters for fraud detection                  |
 | Flyway               | 11.7.2  | Versioned SQL migrations, one per service                      |
 | Resilience4j         | 3.3.1   | Circuit breaker, rate limiter, timeout                         |
-| SpringDoc OpenAPI    | 2.8.8   | Swagger UI aggregated at gateway                               |
+| SpringDoc OpenAPI    | 2.8.8   | Swagger UI aggregated at gateway as well as indivisual         |
 | Testcontainers       | 1.21.4  | Real database integration tests                                |
 | Lombok               | Latest  | Reduces boilerplate on domain models                           |
 

@@ -120,7 +120,7 @@ public class FraudDetectionServiceTest {
         UUID userId = UUID.randomUUID();
         when(fraudRepository.findStatusByUserId(userId)).thenReturn(Optional.of(FraudStatus.CLEAN));
         when(stringRedisTemplate.opsForValue()).thenReturn(valueOperations);
-        when(valueOperations.increment(anyString())).thenReturn(100L); // one below threshold
+        when(valueOperations.increment(anyString())).thenReturn(99L); // one below threshold
 
         fraudDetectionService.evaluateUser(userId, "VISIT");
 

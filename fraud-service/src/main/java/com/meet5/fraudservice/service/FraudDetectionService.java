@@ -52,7 +52,7 @@ public class FraudDetectionService {
         if(actionCount != null && actionCount == 1) {
             stringRedisTemplate.expire(redisKey, Duration.ofMinutes(windowMinutes));
         }
-        if(actionCount != null && actionCount > actionLimit) {
+        if(actionCount != null && actionCount >= actionLimit) {
             markAsFraud(userId, actionCount.intValue());
         }
     }

@@ -91,6 +91,7 @@ social-media-app/
 ├── .gitignore
 ├── user-service/               ← port 8081, users_db
 │   ├── src/main/java/com/meet5/userservice/
+│   │   ├── config/
 │   │   ├── controller/
 │   │   ├── service/
 │   │   ├── repository/         ← NamedParameterJdbcTemplate + COPY
@@ -105,6 +106,7 @@ social-media-app/
 │   └── pom.xml
 ├── interaction-service/        ← port 8082, interaction_db
 │   ├── src/main/java/com/meet5/interactionservice/
+│   │   ├── config/
 │   │   ├── controller/
 │   │   ├── service/
 │   │   ├── repository/
@@ -117,6 +119,7 @@ social-media-app/
 │   └── pom.xml
 ├── fraud-service/              ← port 8083, fraud_db + Redis
 │   ├── src/main/java/com/meet5/fraudservice/
+│   │   ├── config/
 │   │   ├── controller/
 │   │   ├── service/
 │   │   ├── repository/
