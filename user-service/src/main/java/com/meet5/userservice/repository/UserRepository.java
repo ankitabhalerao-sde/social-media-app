@@ -54,6 +54,7 @@ public class UserRepository {
                 .id(userId)
                 .name(user.getName())
                 .username(user.getUsername())
+                .age(user.getAge())
                 .status(UserStatus.ACTIVE)
                 .createdAt(now)
                 .updatedAt(now)

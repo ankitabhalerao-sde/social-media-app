@@ -1,7 +1,5 @@
 package com.meet5.interactionservice.repository;
 
-import com.meet5.interactionservice.dto.VisitRequest;
-import com.meet5.interactionservice.dto.VisitResponse;
 import com.meet5.interactionservice.dto.VisitorSummary;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
@@ -44,9 +42,9 @@ public class VisitRepository {
     public List<VisitorSummary> findVisitors(UUID userId, int limit, int offset) {
         List<VisitorSummary> visitors = new ArrayList<>();
             return jdbcClient.sql("""
-                    SELECT visitor_id, visit_count, first_visited_at, last_visited_at) FROM profile_visits 
-                    WHERE visite_id = :userId 
-                    ORDER BY last_visited_at DESC   
+                    SELECT visitor_id, visit_count, first_visited_at, last_visited_at FROM profile_visits
+                    WHERE visited_id = :userId
+                    ORDER BY last_visited_at DESC
                     LIMIT :limit OFFSET :offset
                     """)
                     .param("userId", userId)
